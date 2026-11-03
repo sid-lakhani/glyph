@@ -1,6 +1,6 @@
 [package]
 name = "glyph-ocr"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 authors = ["Siddhesh Lakhani <sidlakhani@users.noreply.github.com>"]
 description = "Blazing-fast, minimal Wayland screen OCR & text sniper"
