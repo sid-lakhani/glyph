@@ -18,4 +18,3 @@ impl OcrEngine for TesseractEngine {
         tesseract::recognize(img, lang)
     }
 }
-

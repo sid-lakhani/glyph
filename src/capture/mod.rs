@@ -24,4 +24,3 @@ pub fn capture_screen() -> Result<Option<DynamicImage>, CaptureError> {
     let img = grab::grab_geometry(&geom)?;
     Ok(Some(img))
 }
-

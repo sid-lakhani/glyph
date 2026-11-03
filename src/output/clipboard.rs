@@ -44,4 +44,3 @@ fn copy_wl_copy(text: &str) -> Result<(), std::io::Error> {
 
     Ok(())
 }
-
