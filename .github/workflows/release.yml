@@ -45,3 +45,4 @@ jobs:
             glyph-*-x86_64-unknown-linux-gnu.tar.gz
             glyph-*-x86_64-unknown-linux-gnu.tar.gz.sha256
           generate_release_notes: true
+

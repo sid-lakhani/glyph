@@ -35,3 +35,4 @@ pub fn grab_geometry(geometry: &str) -> Result<DynamicImage, GrabError> {
     let img = image::load_from_memory(&output.stdout)?;
     Ok(img)
 }
+

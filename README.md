@@ -44,6 +44,10 @@ glyph -s
 
 ## 📦 Architecture Overview
 
+<p align="center">
+  <img src="assets/Cavewall%20Glyph%20Capture%20Diagram.png" alt="glyph Architecture Overview Diagram" width="100%" />
+</p>
+
 ```
                       ┌──────────────────────┐
                       │    Screen Region     │

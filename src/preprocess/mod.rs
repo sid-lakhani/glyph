@@ -68,3 +68,4 @@ mod tests {
         assert!(enhanced.height() >= 150);
     }
 }
+
