@@ -41,3 +41,4 @@ What actually happened. Include full terminal output or error messages:
 ## Additional Context
 
 Add any other context, such as display scaling factor, multi-monitor configuration, or screenshots.
+

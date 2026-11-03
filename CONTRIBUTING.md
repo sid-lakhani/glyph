@@ -130,3 +130,4 @@ We enforce standard Rust formatting and zero compiler or Clippy warnings.
 
 - For reproducible bugs, please submit a report using the [Bug Report Template](.github/ISSUE_TEMPLATE/bug_report.md).
 - For feature requests or proposals, use the [Feature Request Template](.github/ISSUE_TEMPLATE/feature_request.md).
+

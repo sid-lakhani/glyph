@@ -30,7 +30,7 @@ image = { version = "0.24", default-features = false, features = ["png", "jpeg"]
 arboard = { version = "3.4", default-features = false, features = ["wayland-data-control"] }
 
 # Notifications
-notify-rust = { version = "4.11", default-features = false, features = ["serde", "zbus"] }
+notify-rust = { version = "4.11", default-features = false, features = ["serde", "z", "zbus"] }
 
 # QR code detection & decoding (bonus superpower)
 bardecoder = "0.5"
