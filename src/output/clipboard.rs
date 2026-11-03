@@ -4,24 +4,31 @@ use thiserror::Error;
 
 #[derive(Error, Debug)]
 pub enum ClipboardError {
-    #[error("Failed to copy to clipboard via native Wayland and `wl-copy` fallback: {0}")]
+    #[error("Failed to copy to clipboard via `wl-copy` and `arboard`: {0}")]
     CopyFailed(String),
 }
 
 /// Copies text to the Wayland system clipboard.
 ///
-/// Tries `arboard` (Wayland data-control) first.
-/// If that fails, falls back gracefully to `wl-copy`.
+/// On Wayland, short-lived CLI processes lose their clipboard offer upon exit
+/// unless served by a resident clipboard daemon like `wl-copy`. Therefore,
+/// `wl-copy` is used as the primary clipboard mechanism, with `arboard` as fallback.
 pub fn set_text(text: &str) -> Result<(), ClipboardError> {
-    // 1. Try native arboard clipboard
+    // 1. Primary: wl-copy (forks into background to serve paste requests across Wayland)
+    if copy_wl_copy(text).is_ok() {
+        return Ok(());
+    }
+
+    // 2. Fallback: native arboard
     if let Ok(mut clip) = arboard::Clipboard::new() {
         if clip.set_text(text).is_ok() {
             return Ok(());
         }
     }
 
-    // 2. Fallback to wl-copy subprocess
-    copy_wl_copy(text).map_err(|e| ClipboardError::CopyFailed(e.to_string()))
+    Err(ClipboardError::CopyFailed(
+        "Neither `wl-copy` nor `arboard` was able to set the clipboard.".to_string(),
+    ))
 }
 
 fn copy_wl_copy(text: &str) -> Result<(), std::io::Error> {
