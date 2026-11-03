@@ -82,3 +82,4 @@ Options:
 - Never crash with an unhandled `unwrap()` or `expect()`.
 - Use `thiserror` for typed domain errors (`CaptureError`, `OcrError`, `ClipboardError`).
 - Use `anyhow` in `main.rs` for user-facing exit messaging.
+

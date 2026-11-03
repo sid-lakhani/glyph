@@ -1,0 +1,47 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build-release:
+    name: Build & Release Linux x86_64
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libtesseract-dev libleptonica-dev pkg-config
+
+      - name: Setup Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build release binary
+        run: cargo build --release --locked --features tesseract
+
+      - name: Package tarball
+        run: |
+          VERSION="${GITHUB_REF_NAME}"
+          ARCHIVE_NAME="glyph-${VERSION}-x86_64-unknown-linux-gnu"
+          mkdir -p "${ARCHIVE_NAME}"
+          cp target/release/glyph "${ARCHIVE_NAME}/"
+          cp README.md "${ARCHIVE_NAME}/"
+          if [ -f LICENSE ]; then cp LICENSE "${ARCHIVE_NAME}/"; fi
+          tar -czvf "${ARCHIVE_NAME}.tar.gz" "${ARCHIVE_NAME}"
+          sha256sum "${ARCHIVE_NAME}.tar.gz" > "${ARCHIVE_NAME}.tar.gz.sha256"
+
+      - name: Upload Release Assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            glyph-*-x86_64-unknown-linux-gnu.tar.gz
+            glyph-*-x86_64-unknown-linux-gnu.tar.gz.sha256
+          generate_release_notes: true

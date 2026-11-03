@@ -21,8 +21,8 @@
 ## 📋 Implementation Checklist
 
 ### Milestone 1: Core Scaffolding
-- [ ] Initialize git repository if not already tracked.
-- [ ] Set up directory structure:
+- [x] Initialize git repository if not already tracked.
+- [x] Set up directory structure:
   ```
   src/
   ├── capture/       # Region selection & pixel acquisition
@@ -46,39 +46,39 @@
   ```
 
 ### Milestone 2: Capture Engine
-- [ ] Implement `src/capture/region.rs`:
+- [x] Implement `src/capture/region.rs`:
   - Run `slurp -f "%x %y %w %h"` or `slurp -b 00000088 -c b8f3f1 -s 00000000 -w 2`.
   - Capture geometry string; handle non-zero exit codes (user cancelled) cleanly.
-- [ ] Implement `src/capture/grab.rs`:
+- [x] Implement `src/capture/grab.rs`:
   - Pipe geometry into `grim -g "<geom>" -t png -` and read raw PNG bytes directly into `image::load_from_memory`.
 
 ### Milestone 3: Image Enhancement & OCR Engine
-- [ ] Implement `src/preprocess/mod.rs`:
+- [x] Implement `src/preprocess/mod.rs`:
   - Upscale small crops (`< 300px` height) with Lanczos3 filter.
   - Convert to grayscale, apply contrast stretching to make text boundaries crisp.
-- [ ] Implement `src/engine/qr.rs`:
+- [x] Implement `src/engine/qr.rs`:
   - Run QR code detection via `bardecoder`. If found, return decoded payload immediately.
-- [ ] Implement `src/engine/tesseract.rs`:
+- [x] Implement `src/engine/tesseract.rs`:
   - Interface with `leptess` (or subprocess fallback if C library is missing).
   - Extract text and confidence scores.
 
 ### Milestone 4: Smart Text Cleaner
-- [ ] Implement `src/cleaner/mod.rs`:
+- [x] Implement `src/cleaner/mod.rs`:
   - **Prose mode (default):** remove accidental linebreaks within paragraphs, fix hyphenated splits.
   - **Code mode (`--code`):** preserve whitespace indentation, tabs, code syntax symbols.
   - **Single-line mode (`--line`):** strip all internal newlines and multiple spaces into a single space.
 
 ### Milestone 5: Output & Notifications
-- [ ] Implement `src/output/clipboard.rs`:
+- [x] Implement `src/output/clipboard.rs`:
   - Copy clean text to clipboard using `arboard` (or fallback to `wl-copy`).
-- [ ] Implement `src/output/notify.rs`:
+- [x] Implement `src/output/notify.rs`:
   - Trigger desktop notification with character count and preview.
   - Respect `--silent` flag.
 
 ### Milestone 6: AUR Packaging & GitHub Release
-- [ ] Write `PKGBUILD` for Arch Linux (`aur/glyph-bin` and `aur/glyph-git`).
-- [ ] Write `.github/workflows/release.yml` with cross-compiled automated binary releases for Linux x86_64.
-- [ ] Test integration into Hyprland dotfiles:
+- [x] Write `PKGBUILD` for Arch Linux (`aur/glyph-bin` and `aur/glyph-git`).
+- [x] Write `.github/workflows/release.yml` with cross-compiled automated binary releases for Linux x86_64.
+- [x] Test integration into Hyprland dotfiles:
   ```ini
   bind = Super+Shift, T, exec, glyph
   bind = Super+Shift+Alt, T, exec, glyph --code
@@ -99,3 +99,4 @@ cargo fmt --check
 cargo run -- --help
 cargo run -- --stdout
 ```
+

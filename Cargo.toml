@@ -5,7 +5,7 @@ edition = "2021"
 authors = ["Siddhesh Lakhani <sidlakhani@users.noreply.github.com>"]
 description = "Blazing-fast, minimal Wayland screen OCR & text sniper"
 license = "MIT"
-repository = "https://github.com/sidlakhani/glyph"
+repository = "https://github.com/sid-lakhani/glyph"
 keywords = ["wayland", "ocr", "hyprland", "clipboard", "tesseract"]
 categories = ["command-line-utilities", "accessibility"]
 
@@ -24,13 +24,13 @@ thiserror = "2.0"
 anyhow = "1.0"
 
 # Image processing
-image = { version = "0.25", default-features = false, features = ["png", "jpeg"] }
+image = { version = "0.24", default-features = false, features = ["png", "jpeg"] }
 
 # Clipboard (Wayland native)
 arboard = { version = "3.4", default-features = false, features = ["wayland-data-control"] }
 
 # Notifications
-notify-rust = { version = "4.11", default-features = false, features = ["zbus"] }
+notify-rust = { version = "4.11", default-features = false, features = ["serde", "zbus"] }
 
 # QR code detection & decoding (bonus superpower)
 bardecoder = "0.5"
@@ -40,5 +40,6 @@ bardecoder = "0.5"
 leptess = { version = "0.14", optional = true }
 
 [features]
-default = ["tesseract"]
+default = []
 tesseract = ["dep:leptess"]
+
