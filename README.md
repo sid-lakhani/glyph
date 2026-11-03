@@ -44,14 +44,14 @@ glyph is available in the Arch User Repository:
 
 ```bash
 # Compile from source
-paru -S glyph-git
+paru -S glyph-ocr
 # or
-yay -S glyph-git
+yay -S glyph-ocr
 
 # Precompiled release binary
-paru -S glyph-bin
+paru -S glyph-ocr-bin
 # or
-yay -S glyph-bin
+yay -S glyph-ocr-bin
 ```
 
 ### From GitHub Releases
