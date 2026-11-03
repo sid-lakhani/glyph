@@ -31,7 +31,7 @@ Unlike traditional OCR scripts that rely on Python runtimes, heavy Electron shel
   - **Prose Mode (Default):** Re-joins hyphenated line wraps (`exam-\nple` to `example`) and merges accidental line breaks within paragraphs.
   - **Code Mode (`--code`):** Preserves leading spaces, tabs, brackets, and structural indentation while normalizing typographic quotes.
   - **Single-Line Mode (`--line`):** Collapses arbitrary multi-line selections into a single space-separated line.
-- **Desktop Integration:** Delivers clipboard data via native Wayland data-control protocols (`arboard` with `wl-copy` fallback) and presents desktop preview notifications (`notify-rust` with `notify-send` fallback).
+- **Desktop Integration:** Delivers persistent clipboard data via `wl-copy` (with native `arboard` fallback) and presents desktop preview notifications (`notify-rust` with `notify-send` fallback).
 - **Graceful Cancellation:** Pressing `Escape` or clicking outside during region selection terminates execution cleanly with exit code `0`.
 
 ---
