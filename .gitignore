@@ -1,0 +1,14 @@
+/target
+**/*.rs.bk
+Cargo.lock
+
+# IDE / Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Temporary test artifacts
+*.png
+*.jpg
+*.tmp
